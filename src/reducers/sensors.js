@@ -1,7 +1,7 @@
-const values = (state = [], { type, payload }) => {
+const values = (state = [0], { type, payload }) => {
   switch (type) {
     case 'FETCH_DATA_SUCCES':
-      return [...state, ...payload];
+      return [payload];
     default:
       return state;
   }
@@ -25,4 +25,16 @@ const error = (state = false, { type, payload }) => {
   }
 };
 
-export { values, loading, error };
+const timerId = (state = null, { type, payload }) => {
+  switch (type) {
+    case 'INTERVAL_TIME_STARTED':
+      return payload;
+    case 'INTERVAL_TIME_STOPPED':
+      clearInterval(payload);
+      return null;
+    default:
+      return state;
+  }
+};
+
+export { values, loading, error, timerId };
