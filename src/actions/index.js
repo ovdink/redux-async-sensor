@@ -1,5 +1,12 @@
 import { getValuesIntervalWithDelayService } from '../service/values-service';
 
+export const initialData = (data) => {
+  return {
+    type: 'SET_INITIAL_DATA',
+    payload: data
+  };
+};
+
 const dataRequested = (boolLoaded) => {
   return {
     type: 'FETCH_DATA_REQUEST',
@@ -47,5 +54,6 @@ export const fetchDataStarted = (delay = 2000, interval = 3000) => (
       .catch((error) => dispatch(dataError(error)))
       .finally(() => dispatch(dataRequested(false)));
   }, interval);
+  console.log('timerId: ', timerId);
   dispatch(intervalStart(timerId));
 };

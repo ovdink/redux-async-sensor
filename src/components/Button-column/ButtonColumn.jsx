@@ -4,17 +4,21 @@ import Button from '../Button';
 
 import './ButtonColumn.scss';
 
-const ButtonColumn = ({ fetchData, timerId, intervalStopped }) => {
+const ButtonColumn = ({ staticData, fetchData, timerId, intervalStopped }) => {
   return (
     <div className="btn-column">
       <h3>Buttons</h3>
-      <Button
-        fetchData={fetchData}
-        timerId={timerId}
-        intervalStopped={intervalStopped}
-      />
-      <p>0</p>
-      <p>0</p>
+      {staticData.map(({ id, indicator }) => {
+        return (
+          <Button
+            key={id}
+            indicator={indicator}
+            fetchData={fetchData}
+            timerId={timerId}
+            intervalStopped={intervalStopped}
+          />
+        );
+      })}
     </div>
   );
 };

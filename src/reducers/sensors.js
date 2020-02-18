@@ -1,4 +1,4 @@
-const values = (state = [0], { type, payload }) => {
+export const randomValue = (state = [], { type, payload }) => {
   switch (type) {
     case 'FETCH_DATA_SUCCES':
       return [payload];
@@ -7,7 +7,7 @@ const values = (state = [0], { type, payload }) => {
   }
 };
 
-const loading = (state = false, { type, payload }) => {
+export const loading = (state = false, { type, payload }) => {
   switch (type) {
     case 'FETCH_DATA_REQUEST':
       return payload;
@@ -16,7 +16,7 @@ const loading = (state = false, { type, payload }) => {
   }
 };
 
-const error = (state = false, { type, payload }) => {
+export const error = (state = false, { type, payload }) => {
   switch (type) {
     case 'FETCH_DATA_ERROR':
       return payload;
@@ -25,7 +25,7 @@ const error = (state = false, { type, payload }) => {
   }
 };
 
-const timerId = (state = null, { type, payload }) => {
+export const timerId = (state = null, { type, payload }) => {
   switch (type) {
     case 'INTERVAL_TIME_STARTED':
       return payload;
@@ -36,5 +36,3 @@ const timerId = (state = null, { type, payload }) => {
       return state;
   }
 };
-
-export { values, loading, error, timerId };

@@ -2,13 +2,15 @@ import React from 'react';
 
 import './Values.scss';
 
-const Values = ({ values }) => {
+const Values = ({ staticData, randomValue }) => {
   return (
     <div className="values">
       <h3>Values</h3>
-      <p>{values}</p>
-      <p>1</p>
-      <p>0.3</p>
+
+      {staticData.map(({ id, value }) => {
+        return <p key={id}>{value}</p>;
+      })}
+      <p>random: {randomValue}</p>
     </div>
   );
 };

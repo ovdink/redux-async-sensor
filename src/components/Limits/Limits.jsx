@@ -2,13 +2,13 @@ import React from 'react';
 
 import './Limits.scss';
 
-const Limits = () => {
+const Limits = ({ staticData }) => {
   return (
     <div className="limits">
       <h3>Limits</h3>
-      <p>24</p>
-      <p>10</p>
-      <p>0.8</p>
+      {staticData.map(({ id, limit }) => {
+        return <p key={id}>{limit}</p>;
+      })}
     </div>
   );
 };

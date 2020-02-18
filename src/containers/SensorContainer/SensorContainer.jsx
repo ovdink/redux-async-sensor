@@ -5,33 +5,31 @@ import Indicators from '../../components/Indicators';
 import Limits from '../../components/Limits';
 import Values from '../../components/Values';
 import ButtonColumn from '../../components/Button-column';
-import Button from '../../components/Button';
 
-import { fetchDataStarted, intervalStopped } from '../../actions';
+import { staticData } from '../../constans/static-data';
+
+import { fetchDataStarted, intervalStopped, initialData } from '../../actions';
 
 import './SensorContainer.scss';
 
 const SensorContainer = (props) => {
-  const { values, fetchDataStarted, intervalStopped } = props;
+  const { randomValue, fetchDataStarted, intervalStopped, initialData } = props;
   const state = useSelector((state) => state);
-  // const dispatch = useDispatch();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('STATE: ', state);
-    console.log('PROPS: ', props);
-
-    // dispatch(props.fetchDataStarted());
+    dispatch(initialData(staticData));
   }, []);
 
   return (
     <>
       <div className="sensor-container">
-        <Indicators />
-        <Limits />
-        <Values values={values} />
+        <Indicators staticData={state.initialData} />
+        <Limits staticData={state.initialData} />
+        <Values staticData={state.initialData} randomValue={randomValue} />
         <ButtonColumn
-          // key={id}
-          // id={}
+          staticData={state.initialData}
           fetchData={fetchDataStarted}
           timerId={state.timerId}
           intervalStopped={intervalStopped}
@@ -41,17 +39,24 @@ const SensorContainer = (props) => {
   );
 };
 
-const mapStateToProps = ({ values, loading, error, timerId }) => {
+const mapStateToProps = ({
+  randomValue,
+  loading,
+  error,
+  timerId,
+  initialData
+}) => {
   return {
-    values,
+    randomValue,
     loading,
     error,
-    timerId
+    timerId,
+    initialData
   };
 };
 
 const mapDispatchToProps = () => {
-  return { fetchDataStarted, intervalStopped };
+  return { fetchDataStarted, intervalStopped, initialData };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SensorContainer);
