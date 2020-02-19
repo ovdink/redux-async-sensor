@@ -8,11 +8,11 @@ const ButtonColumn = ({ staticData, fetchData, timerId, intervalStopped }) => {
   return (
     <div className="btn-column">
       <h3>Buttons</h3>
-      {staticData.map(({ id, indicator }) => {
+      {staticData.map(({ id }) => {
         return (
           <Button
             key={id}
-            indicator={indicator}
+            id={id}
             fetchData={fetchData}
             timerId={timerId}
             intervalStopped={intervalStopped}

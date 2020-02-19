@@ -13,7 +13,7 @@ import { fetchDataStarted, intervalStopped, initialData } from '../../actions';
 import './SensorContainer.scss';
 
 const SensorContainer = (props) => {
-  const { randomValue, fetchDataStarted, intervalStopped, initialData } = props;
+  const { fetchDataStarted, intervalStopped, initialData } = props;
   const state = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const SensorContainer = (props) => {
       <div className="sensor-container">
         <Indicators staticData={state.initialData} />
         <Limits staticData={state.initialData} />
-        <Values staticData={state.initialData} randomValue={randomValue} />
+        <Values staticData={state.initialData} />
         <ButtonColumn
           staticData={state.initialData}
           fetchData={fetchDataStarted}

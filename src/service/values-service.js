@@ -1,18 +1,12 @@
-export const getValuesIntervalWithDelayService = async (delay) => {
-  console.log('SERVICE STARTED...');
+export const getValuesIntervalWithDelayService = (delay) => {
+  console.log('ЗАПРОС ПОШЕЛ...');
+  const delayId = null;
   return new Promise((resolve) => {
-    setTimeout(async () => {
+    return setTimeout(() => {
+      console.log('ЗАПРОС ПРИШЕЛ');
       resolve(getRandomValue());
     }, delay);
   });
 };
 
-const getRandomValue = async () => {
-  const res = await Math.floor(Math.random() * 30);
-  console.log(res);
-  return res;
-};
-
-// (async () => {
-//   console.log(await getRandomValue());
-// })();
+const getRandomValue = () => Math.floor(Math.random() * 30);

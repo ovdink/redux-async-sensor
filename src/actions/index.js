@@ -14,10 +14,13 @@ const dataRequested = (boolLoaded) => {
   };
 };
 
-const dataLoaded = (data) => {
+const dataLoaded = (data, id) => {
   return {
-    type: 'FETCH_DATA_SUCCES',
-    payload: data
+    type: 'FETCH_DATA_SUCCESS',
+    payload: {
+      data,
+      id
+    }
   };
 };
 
@@ -42,18 +45,21 @@ export const intervalStopped = (timerId) => {
   };
 };
 
-export const fetchDataStarted = (delay = 2000, interval = 3000) => (
+export const fetchDataStarted = (delay = 2000, interval = 3000, id) => (
   dispatch
 ) => {
   let timerId = null;
+
   dispatch(dataRequested(true));
+
   clearInterval(timerId);
+
   timerId = setInterval(() => {
     getValuesIntervalWithDelayService(delay)
-      .then((data) => dispatch(dataLoaded(data)))
+      .then((data) => dispatch(dataLoaded(data, id)))
       .catch((error) => dispatch(dataError(error)))
       .finally(() => dispatch(dataRequested(false)));
   }, interval);
-  console.log('timerId: ', timerId);
+
   dispatch(intervalStart(timerId));
 };

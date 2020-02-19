@@ -3,14 +3,13 @@ import { useDispatch } from 'react-redux';
 
 import './Button.scss';
 
-const Button = ({ indicator, fetchData, timerId, intervalStopped }) => {
+const Button = ({ id, fetchData, timerId, intervalStopped }) => {
   const [isToggled, setToggled] = useState(false);
   const dispatch = useDispatch();
 
   const startStopSwitcher = () => {
-    console.log('pressed: ', indicator);
     setToggled(!isToggled);
-    if (!isToggled) dispatch(fetchData(1000, 1000));
+    if (!isToggled) dispatch(fetchData(1000, 1000, id));
     else dispatch(intervalStopped(timerId));
   };
 
