@@ -9,7 +9,7 @@ const Button = ({ id, fetchData, timerId, intervalStopped }) => {
 
   const startStopSwitcher = () => {
     setToggled(!isToggled);
-    if (!isToggled) dispatch(fetchData(1000, 1000, id));
+    if (!isToggled) dispatch(fetchData(2000, 3000, id));
     else dispatch(intervalStopped(timerId));
   };
 
